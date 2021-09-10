@@ -14,12 +14,12 @@ function createMedalTable (medals) {
                     obj[key] = 1;
                 }
                 Object.assign(datas, obj);
-            }else{
+            } else {
                 if (a[0] === "1") {
                     datas[key] += 3;
-                }else if (a[0] === "2") {
+                } else if (a[0] === "2") {
                     datas[key] += 2;
-                }else if (a[0] === "3") {
+                } else if (a[0] === "3") {
                     datas[key] += 1;
                 }
             }
