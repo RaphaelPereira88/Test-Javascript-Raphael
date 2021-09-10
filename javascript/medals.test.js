@@ -1,7 +1,31 @@
-function createMedalTable(medals) {
-    // Parse the medal data to produce a medaltable
-    // The winner gets 3 points, second place 2 points and third place 1 point
-    return
+function createMedalTable (medals) {
+    const datas = {};
+    for (let i = 0; i < medals.length; i++) {
+        for (let z = 0; z <= 2; z++){
+            const a = medals[i].podium[z].split('.');
+            const key = a[1];
+            if (Object.prototype.hasOwnProperty.call(datas, key) === false){
+                const obj = {};
+                if (a[0] === "1") {
+                    obj[key] = 3;
+                } else if (a[0] === "2") {
+                    obj[key] = 2;
+                } else if (a[0] === "3") {
+                    obj[key] = 1;
+                }
+                Object.assign(datas, obj);
+            }else{
+                if (a[0] === "1") {
+                    datas[key] += 3;
+                }else if (a[0] === "2") {
+                    datas[key] += 2;
+                }else if (a[0] === "3") {
+                    datas[key] += 1;
+                }
+            }
+        }
+    }
+    return datas;
 }
 
 describe("Medal Table Generator", () => {
@@ -41,5 +65,5 @@ describe("Medal Table Generator", () => {
 
         const actualResult = createMedalTable(medals);
         expect(actualResult).toMatchObject(medalTable);
-    });
+    })
 });
